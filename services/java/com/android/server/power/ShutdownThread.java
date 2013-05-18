@@ -25,6 +25,7 @@ import android.app.Dialog;
 import android.app.IActivityManager;
 import android.app.KeyguardManager;
 import android.app.ProgressDialog;
+import android.app.ChaosBusyDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.IBluetoothManager;
 import android.nfc.NfcAdapter;
@@ -297,7 +298,7 @@ public final class ShutdownThread extends Thread {
 
         // throw up an indeterminate system dialog to indicate radio is
         // shutting down.
-        ProgressDialog pd = new ProgressDialog(context);
+        ChaosBusyDialog pd = new ChaosBusyDialog(context);
         if (mReboot) {
             pd.setTitle(context.getText(com.android.internal.R.string.reboot_system));
             pd.setMessage(context.getText(com.android.internal.R.string.reboot_progress));
@@ -305,7 +306,7 @@ public final class ShutdownThread extends Thread {
             pd.setTitle(context.getText(com.android.internal.R.string.power_off));
             pd.setMessage(context.getText(com.android.internal.R.string.shutdown_progress));
         }
-        pd.setIndeterminate(true);
+//        pd.setIndeterminate(true);
         pd.setCancelable(false);
         pd.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
 
