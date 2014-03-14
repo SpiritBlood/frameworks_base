@@ -3152,6 +3152,10 @@ public final class Settings {
          */
         public static final String POINTER_SPEED = "pointer_speed";
 
+
+        public static final String NFC_POLLING_MODE = "nfc_polling_mode";
+
+
         /**
          * Screenshot toggle delay
          * @hide
