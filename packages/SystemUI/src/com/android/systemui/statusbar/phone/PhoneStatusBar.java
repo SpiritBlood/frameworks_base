@@ -46,6 +46,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.content.res.ThemeConfig;
@@ -4384,6 +4385,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         addHeadsUpView();
 
+        if (mNavigationBarView != null) {
+            mNavigationBarView.updateResources(getNavbarThemedResources());
+        }
+
         // recreate StatusBarIconViews.
         for (int i = 0; i < nIcons; i++) {
             StatusBarIcon icon = icons.get(i);
@@ -4486,7 +4491,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (mRibbonQS != null)
             mRibbonQS.updateResources();
         if (mNavigationBarView != null)  {
-            mNavigationBarView.updateResources();
+            mNavigationBarView.updateResources(getNavbarThemedResources());
             updateSearchPanel();
         }
     }
