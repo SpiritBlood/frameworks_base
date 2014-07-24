@@ -88,7 +88,7 @@ public class PlatLogoActivity extends Activity {
 
         letter.setTypeface(bold);
         letter.setTextSize(mIsCM ? 150 : 300);
-        letter.setTextColor(0xFFFFFFFF);
+        letter.setTextColor(0xFFFF0000);
         letter.setGravity(Gravity.CENTER);
         letter.setText(mIsCM ? "SR" : "K");
 
