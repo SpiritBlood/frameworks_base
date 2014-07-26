@@ -3202,19 +3202,6 @@ public final class Settings {
         public static final String QUICK_TILES_BG_PRESSED_COLOR = "quick_tiles_bg_pressed_color";
 
         /**
-         * Color of QuickSettings tiles text
-         * @hide
-         */
-        public static final String QUICK_TILES_TEXT_COLOR = "quick_tiles_text_color";
-
-        /**
-         * QuickSettings tiles background alpha
-         *
-         * @hide
-         */
-        public static final String QUICK_TILES_BG_ALPHA = "quick_tiles_bg_alpha";
-
-        /**
          * The OpenCNAM paid account ID
          *
          * @hide
