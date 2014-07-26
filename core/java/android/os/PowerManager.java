@@ -498,7 +498,20 @@ public final class PowerManager {
         }
     }
 
-   /**
+   /**     
+     * Forces the device to wake up from sleep only if
+     * nothing is blocking the proximity sensor
+     * @see #wakeUp
+     * @hide
+     */
+    public void wakeUpWithProximityCheck(long time) {
+        try {
+            mService.wakeUpFromKeyEvent(time);
+        } catch (RemoteException e) {
+        }
+    }
+
+    /**
      * Forces the device to go to sleep.
      * <p>
      * Overrides all the wake locks that are held.
