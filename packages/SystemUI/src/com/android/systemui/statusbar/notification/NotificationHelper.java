@@ -82,6 +82,9 @@ public class NotificationHelper {
     private static final int HOVER_STYLE = 0;
     private static final int DEFAULT_STYLE = 1;
 
+    private static final String PEEK_SHOWING_BROADCAST = "com.jedga.peek.PEEK_SHOWING";
+    private static final String PEEK_HIDING_BROADCAST = "com.jedga.peek.PEEK_HIDING";
+
     private BaseStatusBar mStatusBar;
     private Context mContext;
     private Hover mHover;
@@ -397,7 +400,7 @@ public class NotificationHelper {
     public boolean isSimPanelShowing() {
         int state = mTelephonyManager.getSimState();
         return state == TelephonyManager.SIM_STATE_PIN_REQUIRED
-                | state == TelephonyManager.SIM_STATE_PUK_REQUIRED
-                | state == TelephonyManager.SIM_STATE_NETWORK_LOCKED;
+                 | state == TelephonyManager.SIM_STATE_PUK_REQUIRED
+                 | state == TelephonyManager.SIM_STATE_NETWORK_LOCKED;
     }
 }
