@@ -538,10 +538,5 @@
             android:authorities="org.chameleonos.sidebar.contentprovider" >
         </provider>
 
-        <provider android:name=".cm.SpamMessageProvider"
-                  android:permission="android.permission.INTERACT_ACROSS_USERS_FULL"
-                  android:exported="true"
-                  android:authorities="com.cyanogenmod.spam" />
-
     </application>
 </manifest>
