@@ -4984,6 +4984,13 @@ public final class Settings {
         public static final String ENABLE_NAVRING = "enable_navring";
 
         /**
+         * Detailed incall info
+         *
+         * @hide
+         */
+        public static final String DETAILED_INCALL_INFO = "detailed_incall_info";
+
+        /**
          * Allows to show the background activity back the lockscreen
          * @hide
          */
