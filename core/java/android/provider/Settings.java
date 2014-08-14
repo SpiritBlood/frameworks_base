@@ -5795,6 +5795,12 @@ public final class Settings {
         public static final String DATA_TO_WIFI_CONNECT_TYPE = "data_to_wifi_connect_type";
 
          /**
+         * Show call recording button in incallui (default = 0)
+         * @hide
+         */
+        public static final String ALLOW_CALL_RECORDING = "allow_call_recording";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
