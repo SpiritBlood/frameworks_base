@@ -184,8 +184,6 @@ public final class PowerManagerService extends IPowerManager.Stub
 
     private static final float PROXIMITY_NEAR_THRESHOLD = 5.0f;
 
-    private static final float PROXIMITY_NEAR_THRESHOLD = 5.0f;
-
     private Context mContext;
     private LightsService mLightsService;
     private BatteryService mBatteryService;
