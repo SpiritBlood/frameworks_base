@@ -59,7 +59,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityManager.TouchExplorationStateChangeListener;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Space;
@@ -77,7 +76,7 @@ import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class NavigationBarView extends LinearLayout implements BaseStatusBar.NavigationBarCallback {
+public class NavigationBarView extends LinearLayout {
     final static boolean DEBUG = false;
     final static String TAG = "PhoneStatusBar/NavigationBarView";
 
@@ -123,8 +122,6 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
 
     private boolean mModLockDisabled = true;
     private SettingsObserver mObserver;
-
-    private FrameLayout mFlayout;
 
     // workaround for LayoutTransitions leaving the nav buttons in a weird state (bug 5549288)
     final static boolean WORKAROUND_INVALID_LAYOUT = true;
@@ -425,7 +422,6 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         setDisabledFlags(mDisabledFlags, true);
     }
 
-    @Override
     public void setNavigationIconHints(int hints) {
         setNavigationIconHints(hints, false);
     }
@@ -485,7 +481,6 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         return mNavigationIconHints;
     }
 
-    @Override
     public void setDisabledFlags(int disabledFlags) {
         setDisabledFlags(disabledFlags, false);
     }
@@ -606,7 +601,6 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         }
     }
 
-    @Override
     public void setMenuVisibility(final boolean show) {
         setMenuVisibility(show, false);
     }
@@ -1043,13 +1037,6 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
                 return "GONE";
             default:
                 return "VISIBLE";
-        }
-    }
-
-    public void setForgroundColor(Drawable drawable) {
-        try {
-            mFlayout.setForeground(drawable);
-        } catch (Exception e) {
         }
     }
 
