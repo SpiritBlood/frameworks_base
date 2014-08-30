@@ -37,6 +37,7 @@ import android.net.LinkProperties;
 import android.net.NetworkInfo;
 import android.net.NetworkUtils;
 import android.net.RouteInfo;
+import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.HandlerThread;
