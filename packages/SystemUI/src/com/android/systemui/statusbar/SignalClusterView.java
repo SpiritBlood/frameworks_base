@@ -35,6 +35,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.android.systemui.R;
+import com.android.systemui.statusbar.phone.PhoneStatusBar;
 import com.android.systemui.statusbar.policy.NetworkController;
 import com.android.systemui.statusbar.phone.PhoneStatusBar;
 
@@ -65,6 +66,8 @@ public class SignalClusterView
             mEthernetDescription;
     private boolean mEthernetVisible = false;
     private int mEthernetIconId = 0;
+    private PhoneStatusBar mStatusBar;
+
     private PhoneStatusBar mStatusBar;
 
     ViewGroup mWifiGroup, mMobileGroup;
@@ -123,6 +126,10 @@ public class SignalClusterView
         mNC = nc;
     }
 
+    public void setStatusBar(PhoneStatusBar mStatusBar) {
+        this.mStatusBar = mStatusBar;
+    }
+
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -139,6 +146,12 @@ public class SignalClusterView
         mAirplane       = (ImageView) findViewById(R.id.airplane);
         mEthernet       = (ImageView) findViewById(R.id.ethernet);
 
+        mStatusBar.addIconToColor(mWifi);
+        mStatusBar.addIconToColor(mMobile);
+        mStatusBar.addIconToColor(mMobileType);
+        mStatusBar.addIconToColor(mAirplane);
+        mStatusBar.addIconToReverseColor(mWifiActivity);
+        mStatusBar.addIconToReverseColor(mMobileActivity);
         apply();
     }
 
