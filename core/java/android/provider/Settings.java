@@ -5614,6 +5614,14 @@ public final class Settings {
         public static final String STATUS_BAR_CARRIER_LOGO = "status_bar_carrier_logo";
 
         /**
+         * Show or hide clock on lockscreen
+         * 0 - hide (default)
+         * 1 - show
+         * @hide
+         */
+        public static final String STATUS_BAR_FORCE_CLOCK_LOCKSCREEN = "status_bar_force_clock_lockscreen";
+
+        /**
          * Locale for secondary overlay on dialer for t9 search input
          * @hide
          */
