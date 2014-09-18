@@ -391,6 +391,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
     // Status bar carrier
     private boolean mShowStatusBarCarrier;
+    private ImageView mCarrierLogo;
+    private boolean mCarrierLogoEnabled = false;
 
     // drag bar
     private int mCloseViewHeight;
@@ -554,6 +556,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.RECENT_CARD_TEXT_COLOR), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_CARRIER_LOGO), false, this,
                     UserHandle.USER_ALL);
             updateSettings();
         }
@@ -1123,6 +1128,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mSystemIconArea = (LinearLayout) mStatusBarView.findViewById(R.id.system_icon_area);
         mStatusIcons = (LinearLayout)mStatusBarView.findViewById(R.id.statusIcons);
         mNotificationIcons = (IconMerger)mStatusBarView.findViewById(R.id.notificationIcons);
+        mCarrierLogo = (ImageView) mStatusBarView.findViewById(R.id.carrierLogo);
         mMoreIcon = mStatusBarView.findViewById(R.id.moreIcon);
         mNotificationIcons.setOverflowIndicator(mMoreIcon);
         mStatusBarContents = (LinearLayout)mStatusBarView.findViewById(R.id.status_bar_contents);
@@ -1333,7 +1339,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mNetworkController = new NetworkController(mContext);
             mSignalClusterView = (SignalClusterView) mStatusBarView.findViewById(R.id.signal_cluster);
             mNetworkController.addSignalCluster(mSignalClusterView);
+            mNetworkController.addCarrierCluster(mSignalClusterView);
             mSignalClusterView.setNetworkController(mNetworkController);
+            mSignalClusterView.setStatusBar(this);
 
             mSignalTextView = (SignalClusterTextView)
                     mStatusBarView.findViewById(R.id.signal_cluster_text);
@@ -4222,6 +4230,22 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     };
 
+    private void setCarrierVisibility() {
+        if (mCarrierLogo != null) {
+            mCarrierLogo.setVisibility(mCarrierLogoEnabled ? View.VISIBLE : View.GONE);
+        }
+    }
+
+    public void setCarrierVisibility(int vis) {
+        if (mCarrierLogoEnabled) {
+            mCarrierLogo.setVisibility(vis);
+        }
+    }
+
+    public void setCarrierImageResource(int res) {
+        mCarrierLogo.setImageResource(res);
+    }
+
     // SystemUIService notifies SystemBars of configuration changes, which then calls down here
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
@@ -4337,6 +4361,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mShowStatusBarCarrier = Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_CARRIER, 0) == 1;
                 showStatusBarCarrierLabel(mShowStatusBarCarrier);
+
+            mCarrierLogoEnabled = Settings.System.getIntForUser(
+                    resolver, Settings.System.STATUS_BAR_CARRIER_LOGO, 0
+                    , UserHandle.USER_CURRENT) == 1;
+            setCarrierVisibility();
 
         updateBatteryIcons();
     }

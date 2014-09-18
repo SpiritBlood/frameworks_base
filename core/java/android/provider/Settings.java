@@ -5596,6 +5596,12 @@ public final class Settings {
         public static final String STATUS_BAR_CARRIER = "status_bar_carrier";
 
         /**
+         * Show the carrier logo on the status bar
+         * @hide
+         */
+        public static final String STATUS_BAR_CARRIER_LOGO = "status_bar_carrier_logo";
+
+        /**
          * Locale for secondary overlay on dialer for t9 search input
          * @hide
          */

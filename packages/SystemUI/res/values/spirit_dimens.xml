@@ -148,4 +148,7 @@
     <!-- Gesture panel add button text size -->
     <dimen name="gesture_panel_text_size">10dp</dimen>
 
+    <!-- Statusbar Carrier Logo -->
+    <dimen name="status_bar_carrier_logo_size">20sp</dimen>
+
 </resources>
