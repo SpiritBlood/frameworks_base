@@ -113,6 +113,7 @@ public class QuickSettingsContainerView extends FrameLayout {
         }
 
         // Update each of the children's widths accordingly to the cell width
+        int N = getChildCount();        
         int totalWidth = 0;
         int cursor = 0;
         for (int i = 0; i < N; ++i) {
