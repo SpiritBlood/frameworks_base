@@ -1268,6 +1268,8 @@ package android {
     field public static final int tertiary_text_dark = 17170448; // 0x1060010
     field public static final int tertiary_text_light = 17170449; // 0x1060011
     field public static final int transparent = 17170445; // 0x106000d
+    field public static final int trds_background = 17170460; // 0x106001c
+    field public static final int trds_text = 17170461; // 0x106001d
     field public static final int white = 17170443; // 0x106000b
     field public static final int widget_edittext_dark = 17170442; // 0x106000a
   }
@@ -4512,6 +4514,7 @@ package android.app.admin {
     field public static final int PASSWORD_QUALITY_ALPHANUMERIC = 327680; // 0x50000
     field public static final int PASSWORD_QUALITY_BIOMETRIC_WEAK = 32768; // 0x8000
     field public static final int PASSWORD_QUALITY_COMPLEX = 393216; // 0x60000
+    field public static final int PASSWORD_QUALITY_GESTURE_WEAK = 524288; // 0x80000
     field public static final int PASSWORD_QUALITY_NUMERIC = 131072; // 0x20000
     field public static final int PASSWORD_QUALITY_SOMETHING = 65536; // 0x10000
     field public static final int PASSWORD_QUALITY_UNSPECIFIED = 0; // 0x0
@@ -8796,6 +8799,8 @@ package android.gesture {
     field public static final int GESTURE_STROKE_TYPE_SINGLE = 0; // 0x0
     field public static final int ORIENTATION_HORIZONTAL = 0; // 0x0
     field public static final int ORIENTATION_VERTICAL = 1; // 0x1
+    field protected boolean mClearPerformedGesture;
+    field protected boolean mInputEnabled;
   }
 
   public static abstract interface GestureOverlayView.OnGestureListener {
@@ -10538,7 +10543,6 @@ package android.hardware {
     method public int getJpegQuality();
     method public int getJpegThumbnailQuality();
     method public android.hardware.Camera.Size getJpegThumbnailSize();
-    method public java.lang.String getPowerMode();
     method public int getMaxExposureCompensation();
     method public int getMaxNumDetectedFaces();
     method public int getMaxNumFocusAreas();
@@ -10548,6 +10552,7 @@ package android.hardware {
     method public int getMinExposureCompensation();
     method public int getPictureFormat();
     method public android.hardware.Camera.Size getPictureSize();
+    method public java.lang.String getPowerMode();
     method public android.hardware.Camera.Size getPreferredPreviewSizeForVideo();
     method public int getPreviewFormat();
     method public void getPreviewFpsRange(int[]);
@@ -11729,6 +11734,7 @@ package android.media {
     method public void setRingerMode(int);
     method public deprecated void setRouting(int, int, int);
     method public void setSpeakerphoneOn(boolean);
+    method public void setStreamMaxVolume(int, int);
     method public void setStreamMute(int, boolean);
     method public void setStreamSolo(int, boolean);
     method public void setStreamVolume(int, int, int);
@@ -17587,7 +17593,7 @@ package android.os {
 
   public abstract class CountDownTimer {
     ctor public CountDownTimer(long, long);
-    method public final void cancel();
+    method public final synchronized void cancel();
     method public abstract void onFinish();
     method public abstract void onTick(long);
     method public final synchronized android.os.CountDownTimer start();
@@ -18150,6 +18156,7 @@ package android.os {
   }
 
   public final class PowerManager {
+    method public java.lang.String getSeenWakeLocks();
     method public void goToSleep(long);
     method public boolean isScreenOn();
     method public android.os.PowerManager.WakeLock newWakeLock(int, java.lang.String);
@@ -21209,6 +21216,9 @@ package android.provider {
 
   public static final class Settings.System extends android.provider.Settings.NameValueTable {
     ctor public Settings.System();
+    method public static java.util.ArrayList<java.lang.String> getArrayList(android.content.ContentResolver, java.lang.String);
+    method public static java.util.ArrayList<java.lang.String> getArrayListForUser(android.content.ContentResolver, java.lang.String, int);
+    method public static boolean getBoolean(android.content.ContentResolver, java.lang.String, boolean);
     method public static void getConfiguration(android.content.ContentResolver, android.content.res.Configuration);
     method public static float getFloat(android.content.ContentResolver, java.lang.String, float);
     method public static float getFloat(android.content.ContentResolver, java.lang.String) throws android.provider.Settings.SettingNotFoundException;
@@ -21219,6 +21229,8 @@ package android.provider {
     method public static deprecated boolean getShowGTalkServiceStatus(android.content.ContentResolver);
     method public static java.lang.String getString(android.content.ContentResolver, java.lang.String);
     method public static android.net.Uri getUriFor(java.lang.String);
+    method public static boolean putArrayListForUser(android.content.ContentResolver, java.lang.String, java.util.ArrayList<java.lang.String>, int);
+    method public static boolean putBoolean(android.content.ContentResolver, java.lang.String, boolean);
     method public static boolean putConfiguration(android.content.ContentResolver, android.content.res.Configuration);
     method public static boolean putFloat(android.content.ContentResolver, java.lang.String, float);
     method public static boolean putInt(android.content.ContentResolver, java.lang.String, int);
@@ -21232,6 +21244,9 @@ package android.provider {
     field public static final java.lang.String ALARM_ALERT = "alarm_alert";
     field public static final deprecated java.lang.String ALWAYS_FINISH_ACTIVITIES = "always_finish_activities";
     field public static final deprecated java.lang.String ANDROID_ID = "android_id";
+    field public static final java.lang.String ANIMATION_CONTROLS_DURATION = "animation_controls_duration";
+    field public static final java.lang.String ANIMATION_CONTROLS_EXIT_ONLY = "animation_controls_exit_only";
+    field public static final java.lang.String ANIMATION_CONTROLS_REVERSE_EXIT = "animation_controls_reverse_exit";
     field public static final deprecated java.lang.String ANIMATOR_DURATION_SCALE = "animator_duration_scale";
     field public static final java.lang.String APPEND_FOR_LAST_AUDIBLE = "_last_audible";
     field public static final deprecated java.lang.String AUTO_TIME = "auto_time";
@@ -21247,6 +21262,7 @@ package android.provider {
     field public static final android.net.Uri DEFAULT_NOTIFICATION_URI;
     field public static final android.net.Uri DEFAULT_RINGTONE_URI;
     field public static final deprecated java.lang.String DEVICE_PROVISIONED = "device_provisioned";
+    field public static final java.lang.String DIALKEY_PADDING = "dialkey_padding";
     field public static final deprecated java.lang.String DIM_SCREEN = "dim_screen";
     field public static final java.lang.String DTMF_TONE_WHEN_DIALING = "dtmf_tone";
     field public static final java.lang.String END_BUTTON_BEHAVIOR = "end_button_behavior";
@@ -21284,6 +21300,7 @@ package android.provider {
     field public static final deprecated java.lang.String SHOW_PROCESSES = "show_processes";
     field public static final deprecated java.lang.String SHOW_WEB_SUGGESTIONS = "show_web_suggestions";
     field public static final java.lang.String SOUND_EFFECTS_ENABLED = "sound_effects_enabled";
+    field public static final java.lang.String STATUS_BAR_CARRIER = "status_bar_carrier";
     field public static final deprecated java.lang.String STAY_ON_WHILE_PLUGGED_IN = "stay_on_while_plugged_in";
     field public static final java.lang.String SYS_PROP_SETTING_VERSION = "sys.settings_system_version";
     field public static final java.lang.String TEXT_AUTO_CAPS = "auto_caps";
@@ -21797,7 +21814,7 @@ package android.renderscript {
   }
 
   public class BaseObj {
-    method public synchronized void destroy();
+    method public void destroy();
     method public java.lang.String getName();
     method public void setName(java.lang.String);
   }
@@ -27984,6 +28001,9 @@ package android.view {
     field public static final int OVER_SCROLL_ALWAYS = 0; // 0x0
     field public static final int OVER_SCROLL_IF_CONTENT_SCROLLS = 1; // 0x1
     field public static final int OVER_SCROLL_NEVER = 2; // 0x2
+    field public static final int OVER_SCROLL_SETTING_BOUNCE = 3; // 0x3
+    field public static final int OVER_SCROLL_SETTING_BOUNCEGLOW = 2; // 0x2
+    field public static final int OVER_SCROLL_SETTING_EDGEGLOW = 1; // 0x1
     field protected static final int[] PRESSED_ENABLED_FOCUSED_SELECTED_STATE_SET;
     field protected static final int[] PRESSED_ENABLED_FOCUSED_SELECTED_WINDOW_FOCUSED_STATE_SET;
     field protected static final int[] PRESSED_ENABLED_FOCUSED_STATE_SET;
@@ -28174,6 +28194,7 @@ package android.view {
     method public static deprecated int getWindowTouchSlop();
     method public static long getZoomControlsTimeout();
     method public boolean hasPermanentMenuKey();
+    field public static final int DEFAULT_OVERSCROLL_DISTANCE = 0; // 0x0
   }
 
   public class ViewDebug {
@@ -28613,6 +28634,7 @@ package android.view {
     method public void setGravity(int);
     method public void setIcon(int);
     method public void setLayout(int, int);
+    method public void setLayout(int, int, int, int);
     method public void setLocalFocus(boolean, boolean);
     method public void setLogo(int);
     method public void setSoftInputMode(int);
@@ -29503,6 +29525,7 @@ package android.view.inputmethod {
     ctor public EditorInfo();
     method public int describeContents();
     method public void dump(android.util.Printer, java.lang.String);
+    method public final void formalTextInput(boolean);
     method public final void makeCompatible(int);
     method public void writeToParcel(android.os.Parcel, int);
     field public static final android.os.Parcelable.Creator CREATOR;
@@ -31321,6 +31344,23 @@ package android.widget {
     method public abstract int getGroupTypeCount();
   }
 
+  public class HorizontalListView extends android.widget.AdapterView {
+    ctor public HorizontalListView(android.content.Context, android.util.AttributeSet);
+    method public android.widget.ListAdapter getAdapter();
+    method public android.view.View getSelectedView();
+    method protected boolean onDown(android.view.MotionEvent);
+    method protected boolean onFling(android.view.MotionEvent, android.view.MotionEvent, float, float);
+    method public synchronized void scrollTo(int);
+    method public void setAdapter(android.widget.ListAdapter);
+    method public void setMargin(int);
+    method public void setSelection(int);
+    field protected android.widget.ListAdapter mAdapter;
+    field public boolean mAlwaysOverrideTouch;
+    field protected int mCurrentX;
+    field protected int mNextX;
+    field protected android.widget.Scroller mScroller;
+  }
+
   public class HorizontalScrollView extends android.widget.FrameLayout {
     ctor public HorizontalScrollView(android.content.Context);
     ctor public HorizontalScrollView(android.content.Context, android.util.AttributeSet);
@@ -32225,6 +32265,55 @@ package android.widget {
     method public abstract void onScrollStarted();
   }
 
+  public class SmoothProgressBar extends android.widget.ProgressBar {
+    ctor public SmoothProgressBar(android.content.Context);
+    ctor public SmoothProgressBar(android.content.Context, android.util.AttributeSet);
+    ctor public SmoothProgressBar(android.content.Context, android.util.AttributeSet, int);
+    method public void applyStyle(int);
+    method public void setSmoothProgressDrawableColor(int);
+    method public void setSmoothProgressDrawableColors(int[]);
+    method public void setSmoothProgressDrawableInterpolator(android.view.animation.Interpolator);
+    method public void setSmoothProgressDrawableMirrorMode(boolean);
+    method public void setSmoothProgressDrawableReversed(boolean);
+    method public void setSmoothProgressDrawableSectionsCount(int);
+    method public void setSmoothProgressDrawableSeparatorLength(int);
+    method public void setSmoothProgressDrawableSpeed(float);
+    method public void setSmoothProgressDrawableStrokeWidth(float);
+  }
+
+  public class SmoothProgressDrawable extends android.graphics.drawable.Drawable implements android.graphics.drawable.Animatable {
+    method public void draw(android.graphics.Canvas);
+    method public int getOpacity();
+    method public boolean isRunning();
+    method public void setAlpha(int);
+    method public void setColor(int);
+    method public void setColorFilter(android.graphics.ColorFilter);
+    method public void setColors(int[]);
+    method public void setInterpolator(android.view.animation.Interpolator);
+    method public void setMirrorMode(boolean);
+    method public void setReversed(boolean);
+    method public void setSectionsCount(int);
+    method public void setSeparatorLength(int);
+    method public void setSpeed(float);
+    method public void setStrokeWidth(float);
+    method public void start();
+    method public void stop();
+  }
+
+  public static class SmoothProgressDrawable.Builder {
+    ctor public SmoothProgressDrawable.Builder(android.content.Context);
+    method public android.widget.SmoothProgressDrawable build();
+    method public android.widget.SmoothProgressDrawable.Builder color(int);
+    method public android.widget.SmoothProgressDrawable.Builder colors(int[]);
+    method public android.widget.SmoothProgressDrawable.Builder interpolator(android.view.animation.Interpolator);
+    method public android.widget.SmoothProgressDrawable.Builder mirrorMode(boolean);
+    method public android.widget.SmoothProgressDrawable.Builder reversed(boolean);
+    method public android.widget.SmoothProgressDrawable.Builder sectionsCount(int);
+    method public android.widget.SmoothProgressDrawable.Builder separatorLength(int);
+    method public android.widget.SmoothProgressDrawable.Builder speed(float);
+    method public android.widget.SmoothProgressDrawable.Builder strokeWidth(float);
+  }
+
   public final class Space extends android.view.View {
     ctor public Space(android.content.Context, android.util.AttributeSet, int);
     ctor public Space(android.content.Context, android.util.AttributeSet);
@@ -32733,6 +32822,7 @@ package android.widget {
     method public boolean isFlipping();
     method public void setAutoStart(boolean);
     method public void setFlipInterval(int);
+    method public void setSelfMaintained(boolean);
     method public void startFlipping();
     method public void stopFlipping();
   }
