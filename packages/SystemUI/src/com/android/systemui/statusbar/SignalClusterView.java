@@ -68,8 +68,6 @@ public class SignalClusterView
     private int mEthernetIconId = 0;
     private PhoneStatusBar mStatusBar;
 
-    private PhoneStatusBar mStatusBar;
-
     ViewGroup mWifiGroup, mMobileGroup;
     ImageView mWifi, mMobile, mWifiActivity, mMobileActivity, mMobileType, mAirplane, mNoSimSlot,
         mEthernet;
@@ -115,10 +113,6 @@ public class SignalClusterView
             mSettingsObserver = new SettingsObserver(new Handler());
         }
         mSettingsObserver.observe();
-    }
-
-    public void setStatusBar(PhoneStatusBar phoneStatusBar) {
-        mStatusBar = phoneStatusBar;
     }
 
     public void setNetworkController(NetworkController nc) {
