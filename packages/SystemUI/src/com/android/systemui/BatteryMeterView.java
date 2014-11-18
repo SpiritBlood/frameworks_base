@@ -44,7 +44,7 @@ public class BatteryMeterView extends View implements DemoMode,
     public static final String TAG = BatteryMeterView.class.getSimpleName();
     public static final String ACTION_LEVEL_TEST = "com.android.systemui.BATTERY_LEVEL_TEST";
 
-    private static final boolean ENABLE_PERCENT = true;
+    private static final boolean ENABLE_PERCENT = false;
     private static final boolean SINGLE_DIGIT_PERCENT = false;
     private static final boolean SHOW_100_PERCENT = false;
 
@@ -54,7 +54,7 @@ public class BatteryMeterView extends View implements DemoMode,
 
     private final int[] mColors;
 
-    boolean mShowPercent = true;
+    boolean mShowPercent = false;
     private float mButtonHeightFraction;
     private float mSubpixelSmoothingLeft;
     private float mSubpixelSmoothingRight;
@@ -85,7 +85,6 @@ public class BatteryMeterView extends View implements DemoMode,
 
         // current battery status
         int level = UNKNOWN_LEVEL;
-        String percentStr;
         int plugType;
         boolean plugged;
         int health;

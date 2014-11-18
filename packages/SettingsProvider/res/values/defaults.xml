@@ -214,4 +214,7 @@
 
     <!-- Defaults for Settings.System.DEV_FORCE_SHOW_NAVBAR. -->
     <integer name="def_force_disable_navkeys">0</integer>
+
+    <!-- Status bar show battery percent -->
+    <bool name="def_status_bar_show_battery_percent">false</bool>
 </resources>
