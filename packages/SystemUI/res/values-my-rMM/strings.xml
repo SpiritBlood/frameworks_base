@@ -326,7 +326,7 @@
     <string name="battery_saver_notification_action_text" msgid="109158658238110382">"ဘက်ထရီ ချွေတာမှုကို ပိတ်ထားရန်"</string>
     <string name="battery_level_template" msgid="1609636980292580020">"<xliff:g id="LEVEL">%d</xliff:g>%%"</string>
     <string name="notification_hidden_text" msgid="1135169301897151909">"အကြောင်းအရာများ ဝှက်ထား"</string>
-    <string name="media_projection_dialog_text" msgid="3071431025448218928">"<xliff:g id="APP_SEEKING_PERMISSION">%s</xliff:g> က သင်၏ မျက်နှာပြင် ပေါ်မှာ ပြသထားသည့် အရာတိုင်းကို စတင် ဖမ်းယူမည်။"</string> ပြသထားသည့် အရာတိုင်းကို စတင် ဖမ်းယူမည်။"</string>
+    <string name="media_projection_dialog_text" msgid="3071431025448218928">"<xliff:g id="APP_SEEKING_PERMISSION">%s</xliff:g> က သင်၏ မျက်နှာပြင် ပေါ်မှာ ပြသထားသည့် အရာတိုင်းကို စတင် ဖမ်းယူမည်။"</string>
     <string name="media_projection_remember_text" msgid="3103510882172746752">"နောက်ထပ် မပြပါနှင့်"</string>
     <string name="clear_all_notifications_text" msgid="814192889771462828">"အားလုံး ရှင်းလင်းရန်"</string>
     <string name="media_projection_action_text" msgid="8470872969457985954">"ယခု စတင်ပါ"</string>
