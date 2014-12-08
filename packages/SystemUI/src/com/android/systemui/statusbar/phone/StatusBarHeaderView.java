@@ -918,7 +918,8 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
 
         if (mBatteryController != null) {
             mBatteryController.removeStateChangedCallback(this);
-
+        }
+    }
 
     class SettingsObserver extends ContentObserver {
         SettingsObserver(Handler handler) {
