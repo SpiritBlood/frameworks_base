@@ -2071,6 +2071,13 @@ public final class Settings {
         public static final String STATUS_BAR_QUICK_QS_PULLDOWN = "status_bar_quick_qs_pulldown";
 
         /**
+         * Quick Settings Smart Pulldown
+         *
+         * @hide
+         */
+        public static final String QS_SMART_PULLDOWN = "qs_smart_pulldown";
+
+        /**
          * Control whether the process CPU usage meter should be shown.
          *
          * @deprecated Use {@link Global#SHOW_PROCESSES} instead
@@ -7100,13 +7107,6 @@ public final class Settings {
          * starting user code.  If 0, it will run normally.
          */
         public static final String WAIT_FOR_DEBUGGER = "wait_for_debugger";
-
-        /**
-         * Quick Settings Smart Pulldown
-         *
-         * @hide
-         */
-        public static final String QS_SMART_PULLDOWN = "qs_smart_pulldown";
 
         /**
          * Control whether the process CPU usage meter should be shown.
