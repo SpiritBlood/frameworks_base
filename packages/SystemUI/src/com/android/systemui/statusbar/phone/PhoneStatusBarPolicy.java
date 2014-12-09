@@ -26,15 +26,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.database.ContentObserver;
 import android.media.AudioManager;
-import android.net.Uri;
 import android.os.Handler;
 import android.os.storage.StorageEventListener;
 import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
 import android.os.UserHandle;
-import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.telecom.TelecomManager;
 import android.telephony.SubscriptionManager;
@@ -75,7 +72,6 @@ public class PhoneStatusBarPolicy {
     private final StatusBarManager mService;
     private final Handler mHandler = new Handler();
     private final CastController mCast;
-    private boolean mAlarmIconVisible;
 
     // Assume it's all good unless we hear otherwise.  We don't always seem
     // to get broadcasts that it *is* there.
@@ -186,26 +182,7 @@ public class PhoneStatusBarPolicy {
         mService.setIcon(SLOT_CAST, R.drawable.stat_sys_cast, 0, null);
         mService.setIconVisibility(SLOT_CAST, false);
         mCast.addCallback(mCastCallback);
-
-        mAlarmIconObserver.onChange(true);
-        mContext.getContentResolver().registerContentObserver(
-                Settings.System.getUriFor(Settings.System.SHOW_ALARM_ICON),
-                false, mAlarmIconObserver);
     }
-
-    private ContentObserver mAlarmIconObserver = new ContentObserver(null) {
-        @Override
-        public void onChange(boolean selfChange, Uri uri) {
-            mAlarmIconVisible = Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.SHOW_ALARM_ICON, 1) == 1;
-            updateAlarm();
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            onChange(selfChange, null);
-        }
-    };
 
     private final void updateSDCardtoAbsent() {
         mService.setIcon(SDCARD_ABSENT, R.drawable.stat_sys_no_sdcard, 0, null);
@@ -235,8 +212,8 @@ public class PhoneStatusBarPolicy {
 
     private void updateAlarm() {
         AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
-        boolean alarmSet = alarmManager.getNextAlarmClock(UserHandle.USER_CURRENT) != null;
-        mService.setIconVisibility(SLOT_ALARM_CLOCK, alarmSet && mAlarmIconVisible);
+	boolean alarmSet = alarmManager.getNextAlarmClock(UserHandle.USER_CURRENT) != null;
+        mService.setIconVisibility(SLOT_ALARM_CLOCK, alarmSet);
     }
 
     private final void updateSyncState(Intent intent) {
